@@ -3,7 +3,7 @@
  * MCP service uses these Zod schemas for generated tool handlers.
  * To regenerate: hogli build:openapi
  *
- * PostHog API - MCP 11 enabled ops
+ * PostHog API - MCP 10 enabled ops
  * OpenAPI spec version: 1.0.0
  */
 import * as zod from 'zod'
@@ -56,7 +56,7 @@ export const SignalsReportsRetrieveParams = /* @__PURE__ */ zod.object({
 })
 
 /**
- * Return the team's deterministic project profile. The response reflects either the newest non-expired cached row or a freshly-built one (lazy compute on cache miss). `force_refresh=true` skips the cache and rebuilds from authoritative sources, but is honored only for the internal scout token — public read callers always get the cached/lazy-built profile. Read this at the start of a run to orient on the team's product mix, integrations, warehouse sources, signal coverage, and existing inbox surface.
+ * Return the team's deterministic project profile. For the internal scout token the response reflects the newest non-expired cached row or a freshly-built one (lazy compute on cache miss); `force_refresh=true` skips the cache and rebuilds from authoritative sources. Public read callers (session auth or a `signal_scout:read` PAK) get the newest cached profile, or 404 if none has been built yet — they never trigger a rebuild. Read this at the start of a run to orient on the team's product mix, integrations, warehouse sources, signal coverage, and existing inbox surface.
  * @summary Get the current project profile
  */
 export const SignalsScoutProjectProfileGetParams = /* @__PURE__ */ zod.object({
