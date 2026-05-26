@@ -3,7 +3,7 @@
 import json
 
 from django.db import migrations
-from django.db.models.expressions import RawSQL
+from django.db.models import CharField, F, Func
 
 import structlog
 
@@ -45,7 +45,9 @@ def fix_non_list_test_account_filters(apps, schema_editor):
     Team = apps.get_model("posthog", "Team")
 
     bad_teams = (
-        Team.objects.annotate(_taf_type=RawSQL("jsonb_typeof(test_account_filters)", []))
+        Team.objects.annotate(
+            _taf_type=Func(F("test_account_filters"), function="jsonb_typeof", output_field=CharField())
+        )
         .exclude(_taf_type="array")
         .only("id", "test_account_filters")
     )
