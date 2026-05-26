@@ -46655,7 +46655,7 @@ export namespace Schemas {
     };
 
     export type WizardSessionsStreamRetrieveParams = {
-    skill_id: string;
+    skill_id?: string;
     workflow_id: string;
     };
 
