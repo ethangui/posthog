@@ -71,7 +71,7 @@ def fix_non_list_test_account_filters(apps, schema_editor):
 
 class Migration(migrations.Migration):
     dependencies = [
-        ("posthog", "1178_datadeletionrequest_person_properties"),
+        ("posthog", "1181_taggeditem_endpoint_unique_constraint"),
     ]
 
     operations = [

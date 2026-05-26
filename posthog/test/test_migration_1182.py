@@ -9,8 +9,8 @@ pytestmark = pytest.mark.skip("old migrations slow overall test run down")
 
 
 class FixNonListTestAccountFiltersMigrationTest(TestMigrations):
-    migrate_from = "1178_datadeletionrequest_person_properties"
-    migrate_to = "1179_fix_non_list_test_account_filters"
+    migrate_from = "1181_taggeditem_endpoint_unique_constraint"
+    migrate_to = "1182_fix_non_list_test_account_filters"
 
     CLASS_DATA_LEVEL_SETUP = False
 
